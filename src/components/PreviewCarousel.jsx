@@ -45,7 +45,7 @@ const PreviewCarousel = () => {
     };
 
     return (
-        <div className="carousel">
+        <div className="preview-carousel">
             <div className="pages-row">
                 <div className="pages-col-6">
                     <div className="carousel-image-holder">

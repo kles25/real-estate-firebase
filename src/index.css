@@ -198,8 +198,8 @@ body {
 .nav-link-holder {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 40vw;
+    justify-content: space-evenly;
+    width: 50vw;
 }
 
 .nav-link-holder a {
@@ -731,7 +731,7 @@ body {
 /* PREVIEW CAROUSEL CSS */
 
 .preview-section {
-    height: 100vh;
+    min-height: 100vh;
     background-color: #fffffe;
     padding: 12vh 5vw;
     padding-bottom: 0;
@@ -929,4 +929,201 @@ body {
 .pagination-holder button.active {
     background-color: #094067 !important;
     color: #fff;
+}
+
+@media (max-width: 1200px) {
+    .navbar-holder {
+        width: 50vw;
+    }
+
+    .pages-col-6.contact {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 58.333333%;
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+
+    .pages-col-6.map {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 41.666667%;
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+}
+
+@media (max-width: 900px) {
+    .pages-col-6.contact {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .pages-col-6.map {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .hero-content {
+        width: 80vw;
+    }
+
+    .header-two {
+        width: 95vw;
+    }
+
+    .hero-content h1 {
+        font-size: 8vh;
+        font-weight: 500;
+    }
+
+    .featured-content h1 {
+        font-size: 6vh;
+        font-weight: 300;
+    }
+
+    .banner-holder h1 {
+        font-size: 8vh;
+    }
+
+    .contact-holder {
+        width: 70vw;
+    }
+
+    .nav-link-holder {
+        width: 60vw;
+    }
+
+    .nav-link-holder a,
+    .nav-link-holder button {
+        padding: 1vh 2vw;
+    }
+
+    .condo.pages-col-3 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .condo a img {
+        height: 22vh;
+        margin-top: 2vh;
+    }
+
+
+}
+
+@media (max-width: 750px) {
+    .navbar-holder {
+        width: 60vw;
+    }
+}
+
+@media (max-width: 690px) {
+    .navbar-holder {
+        width: 80vw;
+    }
+
+    .footer-contact {
+        padding: 5vh 3vw;
+    }
+
+    .hero-content {
+        width: 100vw;
+        padding-top: 20vh;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        text-align: center;
+    }
+
+    .hero-content button {
+        margin-top: 10vh;
+        -webkit-box-shadow: 4px 4px 49px -17px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 4px 4px 49px -17px rgba(0, 0, 0, 0.75);
+        box-shadow: 4px 4px 49px -17px rgba(0, 0, 0, 0.75);
+        transition: 1s;
+    }
+
+    .featured-content {
+        padding: 0vh;
+        text-align: center;
+    }
+
+    .featured-content p {
+        text-align: justify;
+    }
+
+    .preview-carousel .pages-row {
+        flex-direction: row-reverse;
+    }
+
+    .preview-carousel .pages-row {
+        flex-direction: column-reverse;
+    }
+
+    .preview-carousel .pages-row .pages-col-6 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .contact-holder {
+        width: 80vw;
+    }
+
+    .residence-holder .pages-col-5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .residence-holder .pages-col-7 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .residence-holder img {
+        height: 30vh;
+    }
+
+    .residence-details {
+        padding: 2vh 0;
+    }
+
+    .banner-holder {
+        padding-top: 15vh;
+    }
+
+    .residence-section {
+        padding: 5vh 5vw;
+    }
+
+    .button-link {
+        margin-top: 3vh;
+    }
+
+    .nav-link-holder {
+        width: 70vw;
+    }
+
+    .pagination-holder button {
+        padding: 1vh 2vw;
+    }
+
+    .form-container {
+        padding-left: 2vh;
+        padding-right: 2vh;
+    }
+
+    .form-container form {
+        width: 100%;
+    }
+
 }
