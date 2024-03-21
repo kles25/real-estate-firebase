@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
@@ -15,6 +15,7 @@ const HeaderNavigation = () => {
     const [showHeader, setShowHeader] = useState(false);
     const { currentUser } = useContext(AuthContext);
     const [showDropdown, setShowDropdown] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -40,6 +41,11 @@ const HeaderNavigation = () => {
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
+    };
+
+    const handleLogout = async () => {
+        await signOut(auth);
+        navigate("/signout");
     };
 
     return (
@@ -90,7 +96,7 @@ const HeaderNavigation = () => {
                                         </Link>
                                         <Link
                                             className="navigations-link"
-                                            onClick={() => signOut(auth)}
+                                            onClick={handleLogout}
                                         >
                                             Sign Out
                                         </Link>

@@ -2,24 +2,22 @@ import React, { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function ForgotPasswordPage() {
     const [email, setEmail] = useState("");
-    const [resetSent, setResetSent] = useState(false);
-    const [error, setError] = useState(null);
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
         try {
             if (!email) {
-                setError("Email is required.");
+                toast.error("Email is required.");
                 return;
             }
             await sendPasswordResetEmail(auth, email);
-            setResetSent(true);
-            setError(null);
+            toast.success("Check your Email for password reset");
         } catch (err) {
-            setError(err.message);
+            toast.error(err.message);
         }
     };
 
@@ -39,34 +37,11 @@ function ForgotPasswordPage() {
                         Go Back to <Link to="/">Home</Link>
                     </p>
                     <p>
-                        Go <Link to="/signup">Sign Up</Link>
+                        Go <Link to="/signin">Sign In</Link>
                     </p>
                 </div>
-                {error && (
-                    <p
-                        style={{
-                            color: "red",
-                            fontSize: "1.7vh",
-                            fontWeight: "300",
-                            marginTop: "2vh",
-                        }}
-                    >
-                        {error}
-                    </p>
-                )}
-                {resetSent && (
-                    <p
-                        style={{
-                            color: "red",
-                            fontSize: "1.7vh",
-                            fontWeight: "300",
-                            marginTop: "2vh",
-                        }}
-                    >
-                        Password reset email sent. Check your inbox.
-                    </p>
-                )}
             </form>
+            <ToastContainer />
         </div>
     );
 }

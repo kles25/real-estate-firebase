@@ -14,6 +14,8 @@ import ListProperty from "./components/ListProperty";
 import AddProperty from "./components/AddProperty";
 import { AuthContext } from "./context/AuthContext";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import SignoutPage from "./pages/SignoutPage";
+import VerifyPage from "./pages/VerifyPage";
 
 const TIMEOUT_DURATION = 3000;
 
@@ -30,15 +32,8 @@ const DelayedRoute = ({ element }) => {
 
     return showLoader ? (
         <div className="default-page-container">
+            <div className="text-loader">Page Loading</div>
             <div className="loader"></div>
-            <div className="">
-                <h3 className="loading-text">
-                    Redirecting
-                    <span data-text=".">.</span>
-                    <span data-text=".">.</span>
-                    <span data-text=".">.</span>
-                </h3>
-            </div>
         </div>
     ) : (
         element
@@ -123,8 +118,12 @@ const router = createBrowserRouter([
         element: <AuthRoute element={<SignupPage />} />,
     },
     {
+        path: "/signout",
+        element: <AuthRoute element={<SignoutPage />} />,
+    },
+    {
         path: "/forgot-password",
-        element: <AuthRoute element={<ForgotPasswordPage />} />,
+        element: <PrivateRoute element={<ForgotPasswordPage />} />,
     },
     {
         path: "*",

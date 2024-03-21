@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { auth } from "../firebase-config";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 
 const SigninPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -21,9 +22,10 @@ const SigninPage = () => {
                 displayName: displayName,
             });
 
-            return <Navigate to="/admin" />;
+            toast.success("Sign in successful!");
+            navigate("/verify");
         } catch (error) {
-            setError(error.message);
+            toast.error(error.message);
         }
     };
 
@@ -66,20 +68,8 @@ const SigninPage = () => {
                         Go <Link to="/signup">Sign Up</Link>
                     </p>
                 </div>
-
-                {error && (
-                    <p
-                        style={{
-                            color: "red",
-                            fontSize: "1.7vh",
-                            fontWeight: "300",
-                            marginTop: "2vh",
-                        }}
-                    >
-                        {error}
-                    </p>
-                )}
             </form>
+            <ToastContainer />
         </div>
     );
 };

@@ -3,17 +3,26 @@ import { useNavigate } from "react-router-dom";
 
 function NotFound() {
     const navigate = useNavigate();
-
+    // Use useEffect to navigate to the home page after 3 seconds
     useEffect(() => {
-        const redirectTimeout = setTimeout(() => {
-            // Redirect to the home page after 5 seconds
+        const timer = setTimeout(() => {
+            // Navigate to the home page after 3 seconds
             navigate("/");
-        }, 2000); // 5 seconds
+        }, 3000); // 3 seconds delay
 
-        return () => clearTimeout(redirectTimeout);
-    }, []);
+        // Cleanup function to clear the timer if component unmounts before 3 seconds
+        return () => clearTimeout(timer);
+    }, []); // Empty dependency array ensures the effect runs only once
 
-    return <div>Page Not Found Error 404</div>;
+    // Render a loader or message during the 3-second delay
+    return (
+        <div className="default-page-container">
+            <div className="text-loader">
+                Page Not Found, Redirecting to Home
+            </div>
+            <div className="loader"></div>
+        </div>
+    );
 }
 
 export default NotFound;

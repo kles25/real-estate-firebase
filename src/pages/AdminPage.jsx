@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -21,6 +21,12 @@ function AdminPage() {
     const [showProfileIcon, setShowProfileIcon] = useState(false);
     const handleIcon = () => setShowProfileIcon(!showProfileIcon);
     const { currentUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        await signOut(auth);
+        navigate("/signout");
+    };
 
     return (
         <div className="dashboard-container">
@@ -69,7 +75,7 @@ function AdminPage() {
                                         </Link>
                                         <Link className="profile-links">
                                             <ExitToAppIcon />
-                                            <p onClick={() => signOut(auth)}>
+                                            <p onClick={handleLogout}>
                                                 Log Out
                                             </p>
                                         </Link>
