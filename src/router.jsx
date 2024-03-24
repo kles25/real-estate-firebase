@@ -15,7 +15,6 @@ import AddProperty from "./components/AddProperty";
 import { AuthContext } from "./context/AuthContext";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import SignoutPage from "./pages/SignoutPage";
-import VerifyPage from "./pages/VerifyPage";
 
 const TIMEOUT_DURATION = 3000;
 

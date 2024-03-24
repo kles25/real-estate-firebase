@@ -3,15 +3,23 @@ import { auth, db } from "../firebase-config";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignupPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [displayName, setDisplayName] = useState("");
-    const [error, setError] = useState(null);
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+            toast.error("Passwords do not match.");
+            return;
+        }
+
         try {
             const res = await createUserWithEmailAndPassword(
                 auth,
@@ -33,7 +41,7 @@ const SignupPage = () => {
             // You can add additional actions like sending a verification email
             console.log("User signed up successfully!");
         } catch (error) {
-            setError(error.message);
+            toast.error(error.message);
         }
     };
 
@@ -60,6 +68,15 @@ const SignupPage = () => {
                     />
                 </div>
                 <div>
+                    <label>Confirm Password:</label>
+                    <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
                     <label>Display Name:</label>
                     <input
                         type="text"
@@ -77,19 +94,8 @@ const SignupPage = () => {
                         Go <Link to="/signin">Sign In</Link>
                     </p>
                 </div>
-                {error && (
-                    <p
-                        style={{
-                            color: "red",
-                            fontSize: "1.7vh",
-                            fontWeight: "300",
-                            marginTop: "2vh",
-                        }}
-                    >
-                        {error}
-                    </p>
-                )}
             </form>
+            <ToastContainer />
         </div>
     );
 };

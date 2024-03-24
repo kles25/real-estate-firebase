@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { auth, db } from "../firebase-config";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 function ForgotPasswordPage() {
     const [email, setEmail] = useState("");
@@ -14,6 +15,19 @@ function ForgotPasswordPage() {
                 toast.error("Email is required.");
                 return;
             }
+
+            // Query the Firestore users collection to check if the email exists
+            const usersRef = collection(db, "users");
+            const usersSnapshot = await getDocs(
+                query(usersRef, where("email", "==", email))
+            );
+
+            if (usersSnapshot.empty) {
+                toast.error("Email not registered.");
+                return;
+            }
+
+            // If the email is registered, send the password reset email
             await sendPasswordResetEmail(auth, email);
             toast.success("Check your Email for password reset");
         } catch (err) {

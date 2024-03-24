@@ -634,8 +634,8 @@ body {
 /* FORM CSS */
 
 .form-container {
-    padding-top: 20vh;
-    padding-bottom: 20vh;
+    padding-top: 18vh;
+    padding-bottom: 18vh;
 
 }
 
@@ -645,7 +645,7 @@ body {
     border-radius: 1vh;
     padding: 4vh 2vw;
     margin: auto;
-    height: 60vh;
+    height: 64vh;
 }
 
 .form-container form h2 {
