@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBqgFxNOPOlt3AjEGSdwe8TsEmvjmB8h9s",
+    apiKey: `${import.meta.env.REACT_APP_FIREBASE_KEY}`,
     authDomain: "real-estate-1c673.firebaseapp.com",
     projectId: "real-estate-1c673",
     storageBucket: "real-estate-1c673.appspot.com",
@@ -12,6 +12,7 @@ const firebaseConfig = {
     appId: "1:461133790278:web:8964a818f3145b52f05e47",
     measurementId: "G-6D7X8JZMNQ"
 };
+
 
 
 const app = initializeApp(firebaseConfig);
